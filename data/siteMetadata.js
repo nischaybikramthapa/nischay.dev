@@ -6,7 +6,7 @@ const siteMetadata = {
   description: 'A portfolio blog site created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
+  siteUrl: 'https:/nischay.vercel.app',
   siteRepo: 'https://github.com/nischaybikramthapa',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
