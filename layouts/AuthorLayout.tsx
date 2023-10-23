@@ -2,6 +2,10 @@ import { ReactNode } from 'react'
 import type { Authors } from 'contentlayer/generated'
 import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
+import VerticalTimeline from '@/components/VerticalTimeline'
+import careersData from '@/data/careerTimeline'
+import Stats from '@/components/Stats'
+import { Statistic } from '@/components/Stats'
 
 interface Props {
   children: ReactNode
@@ -43,6 +47,8 @@ export default function AuthorLayout({ children, content }: Props) {
           </div>
           <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
             {children}
+            <Statistic/>
+            <VerticalTimeline timelineData={careersData} />
           </div>
         </div>
       </div>
