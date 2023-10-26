@@ -1,7 +1,7 @@
 'use client';
 
-import { Button, Timeline } from 'flowbite-react';
-import { HiCalendar, HiArrowNarrowRight } from 'react-icons/hi';
+import { Timeline } from 'flowbite-react';
+import { HiCalendar } from 'react-icons/hi';
 
 import React from 'react';
 

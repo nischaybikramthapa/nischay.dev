@@ -1,63 +1,70 @@
-
-import { ArrowPathIcon, CloudIcon, FingerPrintIcon, LockClosedIcon } from '@heroicons/react/24/outline'
+import React from 'react';
+import { CloudIcon, CircleStackIcon, ChartBarIcon, ChatBubbleLeftRightIcon, UsersIcon, CodeBracketIcon } from '@heroicons/react/24/outline';
 
 const features = [
   {
-    name: 'Push to deploy',
+    name: 'Data Engineering',
     description:
-      'Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.',
+      "I have designed modern data platforms and data pipelines for organisations, enabling advanced analytics and better decision-making.",
+    icon: CircleStackIcon,
+  },
+  {
+    name: 'Machine Learning',
+    description:
+      "I have led organisations from AI/ML use case identification to continuous ML model deployment for business success.",
+    icon: CodeBracketIcon,
+  },
+  {
+    name: 'Natural Language Processing',
+    description:
+      "I have employed NLP for challenging business questions, including Q&A, summarisation, and topic modeling.",
+    icon: ChatBubbleLeftRightIcon,
+  },
+  {
+    name: 'Cloud Computing',
+    description:
+      "I specialise in building data and ML solutions on AWS to implement robust, scalable, and cost-effective solutions",
     icon: CloudIcon,
   },
   {
-    name: 'SSL certificates',
+    name: 'Tech Consulting',
     description:
-      'Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.',
-    icon: LockClosedIcon,
+      "I have been assisting diverse customers on their data-to-insight journey, offering expert guidance and fit-for-purpose solutions",
+    icon: UsersIcon,
   },
   {
-    name: 'Simple queues',
+    name: 'Data Visualisation',
     description:
-      'Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.',
-    icon: ArrowPathIcon,
+      "I'm passionate about storytelling, uncovering core issues, and crafting effective solutions",
+    icon: ChartBarIcon,
   },
-  {
-    name: 'Advanced security',
-    description:
-      'Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.',
-    icon: FingerPrintIcon,
-  },
-]
+];
 
 export function Featured() {
   return (
-    <div className="py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          {/* <h2 className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">Deploy faster</h2> */}
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
-            I'm your  <span className="highlighted-text text-blue-600">all in one</span> data specialist
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-500 dark:text-gray-400">
-            Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum
-            pulvinar et feugiat blandit at. In mi viverra elit nunc.
-          </p>
+    <section>
+      <div className="container px-6 py-10 mx-auto text-center">
+        <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+          I'm your <span className="highlighted-text text-blue-600">all in one</span> data specialist
+        </h2>
+        <p className="mt-6 text-lg leading-8 text-gray-500 dark:text-gray-400">
+          I'm a data unicorn who can build modern data platforms, integrate ML solutions into your tech stack, crunch numbers, analyze trends, and turn data into actionable insights to create value.
+        </p>
+        <dl className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-16 md:grid-cols-2 xl:grid-cols-3">
+          {features.map((feature, index) => (
+            <div key={index} className="space-y-3  hover:scale-110 duration-300">
+              <span className="inline-block p-3 text-blue-500 bg-primary-500 justify-center rounded-full dark:text-white dark:bg-primary-500 text-white">
+                <feature.icon className="h-10 w-10 text-white" aria-hidden="true" />
+              </span>
+              <dt className="text-xl font-semibold leading-7 text-gray-900 dark:text-gray-100">
+                    {feature.name}
+                  </dt>
+                  <dd className="mt-6 text-base leading-7 text-gray-500 dark:text-gray-400">
+                    {feature.description}
+                  </dd>
+            </div>
+          ))}</dl>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
-            {features.map((feature) => (
-              <div key={feature.name} className="relative pl-16">
-                <dt className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100">
-                  <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-lg bg-gray-600">
-                    <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
-                  </div>
-                  {feature.name}
-                </dt>
-                <dd className="mt-2 text-base leading-7 text-gray-500 dark:text-gray-400">{feature.description}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-    </div>
+    </section>
   )
 }

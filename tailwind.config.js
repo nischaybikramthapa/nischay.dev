@@ -44,6 +44,22 @@ module.exports = {
         // primary: colors.pink,
         // gray: colors.gray,
       },
+      animation: {
+				"fade-in": "fade-in 3s ease-in-out forwards",
+			},
+      keyframes: {
+				"fade-in": {
+					"0%": {
+						opacity: "0%",
+					},
+					"75%": {
+						opacity: "0%",
+					},
+					"100%": {
+						opacity: "100%",
+					},
+				},
+			},
       typography: ({ theme }) => ({
         extend: {
           fontSize: {

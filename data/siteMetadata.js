@@ -3,10 +3,11 @@ const siteMetadata = {
   title: "Nischay's portfolio",
   author: 'Nischay Thapa',
   headerTitle: 'Nischay Thapa',
-  description: 'A portfolio blog site created with Next.js and Tailwind.css',
+  description: 'Join me on my journey as I share my insights and experiences on machine learning, data engineering and cloud.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https:/nischay.vercel.app',
+  calendly: 'https://calendly.com/nischay_thapa/30min',
   siteRepo: 'https://github.com/nischaybikramthapa',
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
