@@ -1,10 +1,26 @@
-import { motion } from 'framer-motion'
+import { motion, Transition, Variants } from 'framer-motion';
 
-const ListItem = ({ feature, open }) => {
+interface ListItemProps {
+  feature: {
+    name: string;
+    icon: React.ElementType;
+  };
+  open: () => void;
+}
+
+const transitionVariants: Transition | Variants = {
+  ease: 'easeInOut',
+  duration: 0.3,
+  type: 'spring',
+  stiffness: 100,
+  damping: 1,
+};
+
+const ListItem: React.FC<ListItemProps> = ({ feature, open }) => {
   return (
     <motion.article
       whileHover={{ scale: 1.1 }}
-      transition={{ ease: 'easeInOut', duration: 0.3, type: 'spring', stiffness: 100, damping: 1 }}
+      transition={transitionVariants}
       className="overflow-hidden transition hover:shadow-rounded-lg"
       onClick={open}
     >
@@ -15,10 +31,7 @@ const ListItem = ({ feature, open }) => {
         {feature.name}
       </dt>
     </motion.article>
-  )
-}
+  );
+};
 
-export default ListItem
-
-
-
+export default ListItem;
