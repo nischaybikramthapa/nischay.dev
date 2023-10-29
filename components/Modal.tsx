@@ -11,12 +11,6 @@ const Expander = ({ feature, close }) => {
         opacity: 0
     },
   }
-  const h1Variants = {
-    open: {
-        opacity: 1, y: "0vh"
-    },
-    closed: {opacity: 0, y: "-10vh"}
-  }
   const modalInfoVariants = {
     open: {opacity: 1, transition: {staggerChildren: 0.2}},
     closed: {opacity: 0}

@@ -9,7 +9,8 @@ import Testimonials from '@/components/Testimonials'
 import ImageGrid from '@/components/ImageGrid'
 import Stats from '@/components/Stats'
 import Newsletter from '@/components/NewsLetter'
-
+import Image from 'next/image'
+import {Link as ExternalLink} from 'next/link' 
 import { motion } from 'framer-motion'
 const MAX_DISPLAY = 5
 
@@ -57,15 +58,12 @@ export default function Home({ posts }) {
               </svg>
             </a>
           </div>
-          <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <motion.img
-              whileHover={{ scale: [null, 1.5, 1.4] }}
-              transition={{ ease: 'easeInOut', duration: 0.3, stiffness: 100, damping: 1 }}
-              src="/static/images/hero.png"
-              alt="mockup"
-              width={1200}
-            />
-          </div>
+          <motion.div
+            whileHover={{ scale: [null, 1.5, 1.4] }}
+            transition={{ ease: 'easeInOut', duration: 0.3, stiffness: 100, damping: 1 }}
+            className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+            <Image src="/static/images/hero.png" alt="mockup" width={1200} height={1200} />
+          </motion.div>
         </div>
       </div>
       <Featured />

@@ -1,4 +1,4 @@
-import { motion, Transition, Variants } from 'framer-motion';
+import { motion, Transition } from 'framer-motion';
 
 interface ListItemProps {
   feature: {
@@ -8,7 +8,7 @@ interface ListItemProps {
   open: () => void;
 }
 
-const transitionVariants: Transition | Variants = {
+const transitionVariants: Transition = {
   ease: 'easeInOut',
   duration: 0.3,
   type: 'spring',
@@ -16,7 +16,7 @@ const transitionVariants: Transition | Variants = {
   damping: 1,
 };
 
-const ListItem: React.FC<ListItemProps> = ({ feature, open }) => {
+const ListItem: ListItemProps = ({ feature, open }) => {
   return (
     <motion.article
       whileHover={{ scale: 1.1 }}
