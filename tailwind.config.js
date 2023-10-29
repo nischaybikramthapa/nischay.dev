@@ -24,7 +24,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Outfit', ...fontFamily.sans],
-        'montserrat': ['Montserrat'],
+        montserrat: ['Montserrat'],
       // sans: ['Open Sans', '-apple-system', 'sans-serif'],
       // serif: ['Merriweather', '-apple-system', 'serif'],
 
@@ -46,14 +46,45 @@ module.exports = {
       },
       animation: {
 				"fade-in": "fade-in 3s ease-in-out forwards",
+				title: "title 3s ease-out forwards",
+				"fade-left": "fade-left 3s ease-in-out forwards",
+				"fade-right": "fade-right 3s ease-in-out forwards",
 			},
-      keyframes: {
+			keyframes: {
 				"fade-in": {
 					"0%": {
 						opacity: "0%",
 					},
 					"75%": {
 						opacity: "0%",
+					},
+					"100%": {
+						opacity: "100%",
+					},
+				},
+				"fade-left": {
+					"0%": {
+						transform: "translateX(100%)",
+						opacity: "0%",
+					},
+
+					"30%": {
+						transform: "translateX(0%)",
+						opacity: "100%",
+					},
+					"100%": {
+						opacity: "0%",
+					},
+				},
+				"fade-right": {
+					"0%": {
+						transform: "translateX(-100%)",
+						opacity: "0%",
+					},
+
+					"30%": {
+						transform: "translateX(0%)",
+						opacity: "100%",
 					},
 					"100%": {
 						opacity: "100%",

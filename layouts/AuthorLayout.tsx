@@ -4,8 +4,8 @@ import SocialIcon from '@/components/social-icons'
 import Image from '@/components/Image'
 import VerticalTimeline from '@/components/VerticalTimeline'
 import careersData from '@/data/careerTimeline'
-import Stats from '@/components/Stats'
-import { Statistic } from '@/components/Stats'
+
+
 
 interface Props {
   children: ReactNode
@@ -32,7 +32,7 @@ export default function AuthorLayout({ children, content }: Props) {
                 alt="avatar"
                 width={256}
                 height={256}
-                className="h-64 w-64 rounded-full"
+                className="h-64 w-64 rounded-full hover:scale-150 duration-300 ..."
               />
             )}
             <h3 className="pb-2 pt-6 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
@@ -47,7 +47,6 @@ export default function AuthorLayout({ children, content }: Props) {
           </div>
           <div className="prose max-w-none pb-8 pt-8 dark:prose-invert xl:col-span-2">
             {children}
-            <Statistic/>
             <VerticalTimeline timelineData={careersData} />
           </div>
         </div>

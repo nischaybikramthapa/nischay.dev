@@ -10,7 +10,7 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
-
+import Newsletter from '@/components/NewsLetter'
 interface PaginationProps {
   totalPages: number
   currentPage: number
@@ -119,7 +119,12 @@ export default function ListLayoutWithTags({
           </div>
         </div>
         <ul>
-          {/* {!filteredBlogPosts.length && 'No posts found.'} */}
+          {!filteredBlogPosts.length && <div className="p-10">
+              <h1 className="max-w-8xl mb-4 text-4xl font-extrabold tracking-tightn text-center leading-none md:text-2xl xl:text-5xl dark:text-white">
+                Coming <span className="highlighted-text text-primary-500">soon...</span>
+              </h1>
+            </div>
+            }
           {displayPosts.map((post) => {
             const { path, date, title, summary, tags } = post
             return (

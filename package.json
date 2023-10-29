@@ -11,6 +11,7 @@
     "lint": "next lint --fix --dir pages --dir app --dir components --dir lib --dir layouts --dir scripts"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@next/bundle-analyzer": "13.5.3",
     "@tailwindcss/forms": "^0.5.4",
@@ -32,6 +33,7 @@
     "react": "18.2.0",
     "react-countup": "^6.4.2",
     "react-dom": "18.2.0",
+    "react-intersection-observer": "^9.5.2",
     "reading-time": "1.5.0",
     "rehype-autolink-headings": "^6.1.0",
     "rehype-citation": "^1.0.2",
