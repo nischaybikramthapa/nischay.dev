@@ -9,8 +9,7 @@ import Testimonials from '@/components/Testimonials'
 import ImageGrid from '@/components/ImageGrid'
 import Stats from '@/components/Stats'
 import Newsletter from '@/components/NewsLetter'
-import Image from 'next/image'
-import {Link as ExternalLink} from 'next/link' 
+import Image from 'next/image' 
 import { motion } from 'framer-motion'
 const MAX_DISPLAY = 5
 
