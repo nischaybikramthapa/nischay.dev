@@ -18,30 +18,31 @@ const Newsletter = ({
   const subscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const res = await fetch(apiUrl, {
-      body: JSON.stringify({
-        email: inputEl.current.value,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
+    if (inputEl.current) {
+      const res = await fetch(apiUrl, {
+        body: JSON.stringify({
+          email: inputEl.current.value,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      })
 
-    console.log(res)
+      console.log(res)
 
-    const { error } = await res.json()
-    if (error) {
-      setError(true)
-      setMessage('Your e-mail address is invalid or you are already subscribed!')
-      return ''
+      const { error } = await res.json()
+      if (error) {
+        setError(true)
+        setMessage('Your e-mail address is invalid or you are already subscribed!')
+        return ''
+      }
+
+      inputEl.current.value = ''
+      setError(false)
+      setSubscribed(true)
     }
-
-    inputEl.current.value = ''
-    setError(false)
-    setSubscribed(true)
   }
-
   return (
     <div className="relative isolate overflow-hidden py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -52,7 +53,11 @@ const Newsletter = ({
                 key={index}
                 className="text-xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl"
               >
-                {index === 1 ? <span className="highlighted-text text-primary-500">{word}</span> : word}
+                {index === 1 ? (
+                  <span className="highlighted-text text-primary-500">{word}</span>
+                ) : (
+                  word
+                )}
               </h2>
             ))}
             <p className="mt-4 text-lg leading-8 text-gray-500 dark:text-gray-400">
@@ -71,7 +76,7 @@ const Newsletter = ({
                   autoComplete="email"
                   required
                   ref={inputEl}
-                  className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                  className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-gray-500 dark:text-gray-100 shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   placeholder={subscribed ? "You're subscribed !  🎉" : 'Enter your email'}
                   disabled={subscribed}
                 />
