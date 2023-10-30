@@ -14,13 +14,6 @@ import { motion } from 'framer-motion'
 const MAX_DISPLAY = 5
 
 export default function Home({ posts }) {
-  const h1Variants = {
-    open: {
-      opacity: 1,
-      y: '0vh',
-    },
-    closed: { opacity: 0, y: '-10vh' },
-  }
   return (
     <>
       <div className="divide-y divide-gray-200 dark:divide-gray-700">

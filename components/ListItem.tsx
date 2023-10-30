@@ -9,7 +9,6 @@ interface ListItemProps {
 }
 
 const transitionVariants: Transition = {
-  ease: 'easeInOut',
   duration: 0.3,
   type: 'spring',
   stiffness: 100,
