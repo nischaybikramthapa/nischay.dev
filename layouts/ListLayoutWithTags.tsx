@@ -135,6 +135,9 @@ export default function ListLayoutWithTags({
                     <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                       <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                     </dd>
+                    <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                    {Math.ceil(post.readingTime.minutes)} mins read
+                  </dd>
                   </dl>
                   <div className="space-y-5 xl:col-span-3 xl:p-4 xl:-ml-6">
                     <div>

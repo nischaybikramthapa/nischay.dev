@@ -8,7 +8,8 @@ import SectionContainer from '@/components/SectionContainer'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
-
+import Bleed from 'pliny/ui/Bleed'
+import Image from '@/components/Image'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -32,18 +33,27 @@ interface LayoutProps {
 
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content
+  const { filePath, path, slug, date, title, tags, images } = content
   const basePath = path.split('/')[0]
-  
+  const displayImage =
+    images && images.length > 0 ? images[0] : 'https://picsum.photos/seed/picsum/800/400'
   return (
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
         <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+          
           <header className="pt-6 xl:pb-6">
+          {/* <div className="w-full">
+              <Bleed>
+                <div className="aspect-[2/1] w-full relative">
+                  <Image src={displayImage} alt={title} fill className="object-cover" />
+                </div>
+              </Bleed>
+            </div> */}
             <div className="space-y-1 text-center">
               <dl className="space-y-10">
-                <div>
+                {/* <div>
                   <dt className="sr-only">Published on</dt>
                   <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                     <time dateTime={date}>
@@ -52,7 +62,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                     <span className="mx-2">•</span>
                     {Math.ceil(content.readingTime.minutes)} mins read
                   </dd>
-                </div>
+                </div> */}
               </dl>
               <div>
                 <PageTitle>{title}</PageTitle>

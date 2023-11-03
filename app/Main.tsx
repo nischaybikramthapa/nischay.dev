@@ -3,12 +3,10 @@ import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { formatDate } from 'pliny/utils/formatDate'
-import NewsletterForm from 'pliny/ui/NewsletterForm'
 import { Featured } from '@/components/Featured'
 import Testimonials from '@/components/Testimonials'
 import ImageGrid from '@/components/ImageGrid'
 import Stats from '@/components/Stats'
-import Newsletter from '@/components/NewsLetter'
 import Image from 'next/image' 
 import { motion } from 'framer-motion'
 const MAX_DISPLAY = 5
@@ -91,6 +89,9 @@ export default function Home({ posts }) {
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       </dd>
+                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+                    {Math.ceil(post.readingTime.minutes)} mins read
+                  </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">

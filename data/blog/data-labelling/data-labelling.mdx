@@ -1,0 +1,112 @@
+---
+title: 'Data Labelling - The most overlooked process in a ML lifecycle'
+date: '2023-11-01'
+lastmod: '2023-11-03'
+tags: ['data labelling', 'machine learning', 'data preparation']
+draft: false
+layout: PostLayout
+summary: 'Explore the pivotal role of data labeling in the world of machine learning.'
+images: ['/static/images/data-labelling/chart.png']
+authors: ['default']
+---
+
+You might be delving into the world of machine learning, trying to crack the code behind the scenes of the latest algorithms. Yet, buried beneath the surface of every successful project lies a pivotal element that's frequently overshadowed: **data labelling**. 
+
+Have you ever found yourself labelling data for a personal project? Probably not. Often, datasets from open-source repositories like `Kaggle` come pre-labeled, sparing you the labor. However, when you venture into solving a real-world business problem with machine learning, and you will inevitably encounter the task of labeling data before embarking on your ML experiments journey. 
+
+In this post, we will cover the significance of data labelling, exploring its essence and why its crucial in machine learning. We will also look at some of the ways of annotating your data and the challenges behind hand labelling.
+
+<TOCInline toc={props.toc} exclude="Introduction"/>
+
+![](/static/images/data-labelling/chart.png)
+>If we look at the time allocated on ML Project, 25% of the time is spent on data labelling.
+
+<br/>
+
+# So, What exactly is Data Labelling?
+
+Despite the promise of many unsupervised learning machine learning techniques, most ML models in production heavily rely on supervised learning paradigm - meaning they need labels to learn. Better the quality and quantity of the label data, more accurate are the predictions. 
+
+There are certain ML tasks that inherently have labels or allows collecting of such labels in real-time. Take, for instance, you are predicting the engagement rate of a marketing ad campaign. There is no need for you to label the data because you already know whether users have previously clicked on an ad or not. Likewise, in recommendation systems, the labels reflect whether users clicked on a recommended item or not. However, in the majority of tasks, these natural labels might be unavailable or inaccessible, necessitating the acquisition of labels through alternative methods.
+
+**Data labelling is the process of tagging raw data with one or more descriptive labels.** It’s similar to giving meaning to an otherwise ambiguous dataset, enabling your machine learning model to understand and learn the information.
+
+Consider you are watching a video with a horse in it – you would swiftly recognise the majestic creature munching on your garden greens. What if you need a machine learning system to alert you before the horse wreaks havoc? You would train an object detection model to differentiate horses from other animals. To achieve this, you would meticulously label past video feeds with bounding boxes around the horses. The more varied scenarios of labeled data you accumulate, the more accurate your model becomes at detecting horses.
+
+![data-labelling](/static/images/data-labelling/example.png)
+
+
+Data labeling isn't just about horses; it spans various domains, from tagging audio recordings to detecting sentiments in social media posts or identifying anomalies in X-rays. 
+
+<br/>
+
+# Role of Data Labelling in Machine Learning
+
+Why does data labelling matter in the realm of machine learning, you ask? Well, imagine your ML project as a student. Data labelling is very similar to the teachings from a wise mentor – in this case, the labeled data instructs the machine on the right path. Supervised learning, a common approach in machine learning, thrives on this guidance. Here's why data labeling is pivotal:
+
+- **Fuel for Supervised Learning**: Most practical ML models rely on supervised learning, requiring labeled data as the groundwork for the model's learning abilities.
+- **Precise Predictions**: Precise data labeling affects the quality of ML algorithms. Better the quality of labels, better the predictions of ML models.
+- **Efficiency**: Leveraging machine learning models to assist in labeling data can help streamline the process.
+
+---
+
+# Ways to label data
+
+There are different techniques to label data, and the one used would depend on the specific business use case and applications. Here are some key data labeling techniques:
+
+- **Manual labeling**: This is when humans are involved in labelling the dataset. It can be an effective method since human intelligence is good at recognising patterns within small and poor-quality datasets. There are two types of human labeling: internal and external. Internal labeling is when experts within the company label the data, while external labeling refers to third-party vendor who have resources or expertise label the data, usually a crowdsourcing platform or a company that specialised in data labelling.
+
+- **Semi-supervised labeling**: This technique involves using a combination of labelled and unlabelled data to train a machine learning model. The model is first trained on the labelled data, and then it is used to predict labels for the unlabelled data. The predicted labels are then reviewed by humans, corrected if necessary and added back to the training set to expand the size of the dataset.
+
+- **Active learning**: Active Learning focuses on selecting the most informative data points for labelling. The machine learning model is used to predict labels for a subset of the data, and the data points with the highest uncertainty are selected for labeling by humans. This process is repeated until the desired level of accuracy is achieved.
+
+- **Automated labeling**: ML algorithms drive this technique to automatically label the data. This can be done using methods such as clustering, where similar data points are grouped together and labeled with the same tag.
+
+<br/>
+
+
+# How does manual labelling work?
+
+Data Labelling has evolved from an auxiliary task to being a core function within many ML teams in production.
+
+Here are the key steps involved in the manual labelling process:
+
+1. **Identifying raw data**: Once you've understood the business requirements and determined the success metrics for the ML project, the first step is identifying the raw data that needs to be annotated.
+2. **Human-in-the-loop annotation** : After the raw data is identified, one or more meaningful and informative labels are added through human participation. This can involve various sources, including internal team members, crowd workers, or contracted external annotators. The main idea here is to gather high-quality labels so that a machine learning model can learn effectively. For instance, you would use a crowdsourcing platform to get labels that indicates whether an image contains a bird or car, while using an internal team would make sense to tag new issues reported in a customer support ticket. For tasks such as spotting tumours in X-ray images, you would require a certified radiologist.
+3. **Quality assurance**: To achieve high-quality training data, the labels should be informative, appropriately tagged, and carefully selected. Organisations can employ data scientists and data engineers to do data labeling internally or can contract with external vendors that maintain a rigorous QA process.
+4. **Model training**: The labeled data is then used to train the ML model, allowing it to learn and recognise underlying patterns based on the human-generated labels.
+
+This process can be iterative, meaning you would go back on labelling depending on the performance of your ML models.
+
+![](/static/images/data-labelling/dl-process.png)
+
+<br/>
+
+# Challenges with Manual Labelling
+
+Now that you've somewhat understood the significance of data labelling and looked into some of the ways of data annotation, you might be considering the option of hand-labeling your training data. While it seems like a plausible choice, those who've worked with data in production systems can attest to the complexities involved in acquiring hand-labeled data. 
+
+Let's break down these challenges:
+
+**Cost and Expertise:** Manual labeling can be expensive, particularly when there is a need for Subject Matter Experts (SMEs). For example, annotating medical images to identify tumour locations often requires certified radiologists whose expertise comes at a high cost and limited availability.
+
+**Data Privacy Concerns:** Strict privacy measures present a considerable obstacle when sharing sensitive data for external labeling. Imagine the challenge of annotating patient medical records externally, which may not be a viable option due to privacy regulations. In such cases, organisations might need to manage labeling in-house, hiring annotators or contracting services working within their premises.
+
+**Slowness and Adaptability:** Manual labeling is a slow process, affecting a model’s adaptability to new data. Consider adapting a customer service chatbot to handle a newly emerged product-related query. Re-labeling the data and incorporating new information into the model can significantly slow down the chatbot’s ability to effectively respond to these inquiries, impacting customer satisfaction.
+
+**Label Ambiguity:** Involving multiple annotators can lead to label conflicts. For instance, in entity recognition tasks, different annotators might produce conflicting annotations for the same data instance, leading to uncertainty in model training. Establishing clear guidelines and rules for annotation is crucial to resolve such conflicts.
+
+**Quality and Performance Implications:** The indiscriminate use of data from various sources can significantly impact model performance. If inaccurately labeled data is incorporated into the training set, it may unexpectedly decrease model performance. Implementing a robust data lineage process and regularly analysing the performance of new data samples helps maintain high-quality training data for the model.
+
+---
+
+# Conclusion
+
+In this post, we've explored the essence of data labeling, its role within the ML pipeline, and its importance in supervised machine learning.
+Despite its significance, manual data labeling presents various challenges such as cost, data privacy concerns, label ambiguity, and potential impacts on model performance. However, there are alternatives to hand labelling which will be covering in the [next post](/blog/data-labelling/alternatives-to-data-labelling). 
+
+---
+
+Thanks for reading! Stay tuned for more insightful reads on unraveling the intricacies of the data world! If you have any questions, feel free to contact me on [LinkedIn](https://www.linkedin.com/in/nischaythapa/).
+
+---

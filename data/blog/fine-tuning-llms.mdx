@@ -1,0 +1,207 @@
+---
+title: 'How to Fine Tune Large Language Models'
+date: '2023-10-18'
+lastmod: '2023-10-18'
+tags: ['large language models', 'nlp', 'machine learning']
+draft: true
+summary: 'Looking for ways to make large language work on your own data? Check out some of the effiecient ways you can fine tune a large language model'
+images: ['/static/images/canada/mountains.jpg', '/static/images/canada/toronto.jpg']
+authors: ['default']
+---
+
+## Fine tuning Large Language models (LLMs)
+
+
+Fine-tuning Large Language Models (LLMs) is a process of further training a pre-trained LLM on new data to improve its performance on a specific task. The purpose of fine-tuning LLMs is to adapt them to specific tasks and domains, which can improve their performance on those tasks. Fine-tuning can also help LLMs avoid sub-optimal performance on tasks that require a large knowledge base or domain-specific information. 
+
+
+Here are 4 reasons to fine-tune LLMs:
+
+- To improve performance on a specific task, such as summarisation, question answering, or text classification.
+- To adapt the LLM to a specific domain, such as scientific literature, legal documents, or social media.
+- To extend the context sizes of pre-trained LLMs while mitigating the computational cost associated with fine-tuning.
+- To reduce memory usage enough to fine-tune a large LLM on a single GPU while preserving full 16-bit fine-tuning task performance.
+
+There are several methods for fine-tuning LLMs, including supervised learning, low-rank adaptation (LoRA), quantised LoRA (QLoRA), parameter-efficient fine-tuning (PEFT), multi-task learning, and prompt tuning.
+
+#### Problems with Fine tuning
+
+When fine tuned on pre-trained LLM on downstream datasets, it has resulted in huge performance gains when compared to zero shot learning. However, as models get larger, full fine tuning becomes infeasible to train on consumer hardware. It becomes very expensive to store and deploy fine tune models independently for each down stream tasks because they are the same size as the original pre-trained model. Another disadvantage is that you only get access to the output embeddings of the model and can't learn on the internal representation of the model. 
+
+### Parameter Efficient fine tuning
+
+
+Parameter Efficient Fine-Tuning (PEFT) is a technique used in Natural Language Processing (NLP) to improve the performance of pre-trained language models on specific tasks while reducing computational requirements. PEFT fine-tunes only a small subset of the model's parameters, achieving comparable performance to full fine-tuning while significantly reducing computational requirements and storage costs. The main idea behind PEFT is to identify the most important parameters for the new task and only update those parameters during training. This approach involves fine-tuning the pre-trained model on a small amount of data while also freezing some of the model's parameters. This also helps to overcome the issue of catastrophic forgetting, a behaviour observed during the full fine tuning of LLMs.
+
+
+PEFT is particularly useful in the context of large-scale pre-trained models, such as those used in NLP, to adapt the pre-trained model to a new task without drastically increasing the number of parameters. PEFT methods include techniques like adapter layers, set-off tuning, and P-tuning. One of the most popular techniques in fine-tuning is a reparameterisation-based method called Low-Rank Adaptation (LoRa). LoRa updates a small number of key parameters while preserving most of the pre-trained model structure. PEFT has several benefits, including reduced computational costs, faster training times, lower hardware requirements, better modeling performance, and less storage. PEFT approaches have also shown to be better than fine tuning in the low data regimes and generalise better to out-of-domain scenarios. It also helps in portability where in users can tune models using PEFT methods to get tiny checkpoint worth a few MBs compared to the large checkpoints of full fine-tuning. 
+
+
+**How to make model smaller?**
+
+#### Precision
+
+Precision refers to the number of bits used to represent a value in a computer system. In the context of LLMs, precision can affect the quality of the model's performance. For example, reducing the precision of each weight can reduce the overall quality of the LLM. However, studies show that the impact of precision reduction varies depending on the techniques used, and larger models (over about 60B) are able to maintain their capacities even when converted to 4-bit https://www.tensorops.ai/post/what-are-quantized-llms.
+
+#### Quantisation
+
+Quantisation is a technique used to reduce the size of large neural networks, including LLMs, by modifying the precision of the model parameters. In the context of fine-tuning LLMs, quantisation can be used to reduce the memory footprint of the model, making it more efficient to fine-tune on a single GPU Quantisation can also be used to reduce the precision of the model parameters, which can reduce the computational cost of fine-tuning. Quantisation-aware fine-tuning is a technique that combines quantisation and fine-tuning to reduce the memory footprint and computational cost of fine-tuning LLMs . Quantisation-aware fine-tuning involves quantising the pre-trained LLM weights to a lower precision, such as 4-bit NormalFloat, to reduce the memory footprint. A small set of 16-bit learnable adapter weights are then added to the quantised weights, which are tuned via back propagation through the quantised weights. The computations are still performed in 16-bit precision.
+
+PEFT is useful when:
+
+- Reducing computational costs
+- Faster training times
+- Lower hardware requirements
+- Adapting pre-trained models without increasing parameters
+
+PEFT may not be useful when:
+
+- The task requires fine-tuning of a large number of parameters
+- The pre-trained model is not well-suited for the new task
+- The dataset for the new task is too small to fine-tune the model effectively
+
+
+### PEFT methods
+
+#### Adapter
+
+An adapter is a lightweight module that is plugged into a pre-trained Large Language Model (LLM) to enable efficient fine-tuning of the model for specific tasks. Adapters are designed to be small and computationally efficient, allowing them to be fine-tuned on small datasets without requiring extensive computational resources. Adapters can be used to fine-tune LLMs for specific tasks or to adapt them to specific domains, such as scientific literature, legal documents, or social media. Here's how adapters work:
+
+- Adapters are trained on a small, task-specific dataset that is relevant to the desired task or subject matter.
+- Adapters are plugged into the pre-trained LLM, allowing the model to be fine-tuned for the specific task or domain.
+- Adapters are designed to be small and computationally efficient, allowing them to be fine-tuned on small datasets without requiring extensive computational resources.
+- Adapters can be used in conjunction with other parameter-efficient fine-tuning methods, such as Low Rank Adaptation (LoRA) and Prefix Tuning, to further reduce the computational cost of fine-tuning LLMs.
+
+Overall, adapters are a parameter-efficient fine-tuning method that enables efficient fine-tuning of pre-trained LLMs for specific tasks or domains. Adapters are designed to be small and computationally efficient, allowing them to be fine-tuned on small datasets without requiring extensive computational resources. Adapters can be used in conjunction with other parameter-efficient fine-tuning methods to further reduce the computational cost of fine-tuning LLMs.
+
+#### Low-Rank Adaptation of large language models (LoRA)
+
+LoRA (Low-Rank Adaptation of Large Language Models) is a training method that accelerates the training of large language models while consuming less memory. It is a technique that cuts the costs of fine-tuning large language models (LLM) to a fraction of its actual figure. Here's how it works:
+
+- LoRA adds pairs of rank-decomposition weight matrices (called update matrices) to existing weights, and only trains those newly added weights. This has a couple of advantages:
+  - Previous pretrained weights are kept frozen so the model is not as prone to catastrophic forgetting.
+  - Rank-decomposition matrices have significantly fewer parameters than the original model, which means that trained LoRA weights are easily portable.
+- LoRA matrices are generally added to the attention layers of the original model. LoRA allows us to train some dense layers in a neural network indirectly by optimizing rank decomposition matrices of the dense layers' change during adaptation.
+- LoRA creates two downstream weight matrices. One transforms the input parameters from the original dimension to the low-rank dimension. And the second matrix transforms the low-rank data to the output dimensions of the original model.
+
+The benefits of LoRA include:
+
+- LoRA can reduce the number of trainable parameters by a factor of 10,000 and the GPU memory requirement by a factor of 3.
+- LoRA performs on-par or better than fine-tuning in model quality on RoBERTa, DeBERTa, GPT-2, and GPT-3, despite having fewer trainable parameters, a higher training throughput, and, unlike adapters, no additional inference latency.
+- LoRA allows for quick task-switching when deployed as a service by sharing the vast majority of the model parameters.
+
+
+#### LoRA simplified
+
+
+LoRA: Low-Rank Adaptation of Large Language Models using transportation could be like adding a trailer to a truck. The original truck remains unchanged, but the trailer is added to carry more cargo. Similarly, LoRA adds new weight matrices to the existing weights of a language model, but only trains those newly added weights. The original model remains unchanged, but the new matrices make it easier to train and use. The new matrices are smaller and have fewer parameters than the original model, which is like adding a smaller trailer that is easier to handle and transport. The LoRA matrices are generally added to the attention layers of the original model, which is like adding a trailer to the parts of the truck that require more attention to detail. The benefits of LoRA include reducing the number of trainable parameters and GPU memory requirements, while still maintaining or improving model quality. This is like adding a trailer to a truck to carry more cargo without overloading the truck.
+
+---
+
+LoRA can be explained using the analogy of a chef who has already prepared a large pot of soup and wants to add some new ingredients to make a different dish. Instead of starting from scratch and making a new pot of soup, the chef can use the existing soup as a base and add new ingredients to create a new dish. Similarly, LoRA uses a pre-trained large language model as a base and adds new trainable rank decomposition matrices to each layer of the model to fine-tune it for a specific downstream task. This way, LoRA reduces the number of trainable parameters for the downstream task, making it more cost-efficient and feasible to fine-tune larger models.
+
+
+### LongLoRa
+
+LongLoRA is an efficient fine-tuning approach that extends the context sizes of pre-trained large language models (LLMs) with limited computation cost. Typically, training LLMs with long context sizes is computationally expensive, requiring extensive training hours and GPU resources. LongLoRA extends the context sizes of pre-trained LLMs while mitigating the computational cost associated with fine-tuning. LongLoRA tackles this challenge by introducing two key aspects: Shift Short Attention (S2-Attn) and Parameter-Efficient Fine-Tuning. Shift Short Attention (S2-Attn) enables context extension, leading to non-trivial computation saving with similar performance to fine-tuning with vanilla attention. Parameter-Efficient Fine-Tuning works well under the premise of trainable embedding and normalisation. LongLoRA demonstrates strong empirical results on various tasks on LLaMA2 models from 7B/13B to 70B. LongLoRA extends models' context while retaining their original architectures, and is compatible with most existing techniques, like FlashAttention-2. In addition, to make LongLoRA practical, a dataset called LongQA was collected for supervised fine-tuning, which contains more than 3k long context question-answer pairs.
+
+
+Here are some key points about LongLoRA:
+
+- LongLoRA extends the context sizes of pre-trained LLMs while mitigating the computational cost associated with fine-tuning.
+- LongLoRA introduces two key aspects: Shift Short Attention (S2-Attn) and Parameter-Efficient Fine-Tuning.
+- Shift Short Attention (S2-Attn) enables context extension, leading to non-trivial computation saving with similar performance to fine-tuning with vanilla attention.
+- Parameter-Efficient Fine-Tuning works well under the premise of trainable embedding and normalization.
+- LongLoRA extends models' context while retaining their original architectures, and is compatible with most existing techniques, like FlashAttention-2.
+
+### What are the benefits of LongLoRA?
+
+- LongLoRA demonstrates strong empirical results on various tasks on LLaMA2 models from 7B/13B to 70B.
+- LongLoRA is an efficient fine-tuning approach that extends the context sizes of pre-trained LLMs while mitigating the computational cost associated with fine-tuning.
+- LongLoRA is compatible with most existing techniques, like FlashAttention-2.
+
+### When to use LongLoRA and when not to?
+
+- LongLoRA is useful when you want to extend the context sizes of pre-trained LLMs while mitigating the computational cost associated with fine-tuning.
+- LongLoRA is not useful when you don't need to extend the context sizes of pre-trained LLMs or when you have sufficient computational resources to fine-tune LLMs with long context sizes.
+
+Overall, LongLoRA is an efficient fine-tuning approach that extends the context sizes of pre-trained LLMs while mitigating the computational cost associated with fine-tuning. It introduces two key aspects: Shift Short Attention (S2-Attn) and Parameter-Efficient Fine-Tuning. LongLoRA demonstrates strong empirical results on various tasks on LLaMA2 models from 7B/13B to 70B. LongLoRA is useful when you want to extend the context sizes of pre-trained LLMs while mitigating the computational cost associated with fine-tuning.
+
+### QLoRA
+
+QLoRA is an efficient fine-tuning approach that reduces memory usage enough to fine-tune a 65B parameter model on a single 48GB GPU while preserving full 16-bit fine-tuning task performance. 
+
+Here are some key points about QLoRA:
+
+- QLoRA introduces multiple innovations designed to reduce memory use without sacrificing performance.
+- QLoRA uses 4-bit NormalFloat, an information theoretically optimal quantisation data type for normally distributed data that yields better empirical results than 4-bit Integers and 4-bit Floats.
+- QLoRA uses double quantization to reduce the average memory footprint by quantizing the quantization constants.
+- QLoRA uses paged optimizers to handle memory spikes.
+- QLoRA first quantizes the pre-trained LLM weights to 4-bit NormalFloat to reduce the memory footprint. It then adds a small set of 16-bit learnable adapter weights that are tuned via backpropagation through the quantized weights. QLoRA keeps a 16-bit datatype for computations.
+
+### What are the benefits and limitations of QLoRA?
+
+- QLoRA reduces memory usage enough to fine-tune a 65B parameter model on a single 48GB GPU while preserving full 16-bit fine-tuning task performance.
+- QLoRA introduces multiple innovations designed to reduce memory use without sacrificing performance.
+- QLoRA uses 4-bit NormalFloat, an information theoretically optimal quantization data type for normally distributed data that yields better empirical results than 4-bit Integers and 4-bit Floats.
+- QLoRA uses double quantization to reduce the average memory footprint by quantizing the quantization constants.
+- QLoRA uses paged optimizers to handle memory spikes.
+- QLoRA facilitates efficient fine-tuning of the largest publicly available Large Language Models (LLMs), leading to state-of-the-art results.
+- QLoRA is limited to quantized LLMs and may not be useful for non-quantized LLMs.
+
+### When to use QLoRA and when not to use QLoRA?
+
+- QLoRA is useful when you want to fine-tune quantised LLMs while reducing memory usage.
+- QLoRA is not useful when you don't need to fine-tune quantised LLMs or when you have sufficient computational resources to fine-tune LLMs without reducing memory usage.
+
+Overall, QLoRA is an efficient fine-tuning approach that reduces memory usage enough to fine-tune a 65B parameter model on a single 48GB GPU while preserving full 16-bit fine-tuning task performance. It introduces multiple innovations designed to reduce memory use without sacrificing performance, including 4-bit NormalFloat, double quantisation, and paged optimisers. QLoRA facilitates efficient fine-tuning of the largest publicly available Large Language Models (LLMs), leading to state-of-the-art results. QLoRA is useful when you want to fine-tune quantised LLMs while reducing memory usage.
+
+## References
+
+##### Fine tune LLM
+
+[Fine tuning LLMs](https://towardsdatascience.com/fine-tuning-large-language-models-llms-23473d763b91)
+[Fine tuning LLM with hugging face and deepspeed](https://www.databricks.com/blog/2023/03/20/fine-tuning-large-language-models-hugging-face-and-deepspeed.html)
+[Hacker news Fine tune LLM](https://news.ycombinator.com/item?id=35666201)
+[finetuning-large-language-models](https://magazine.sebastianraschka.com/p/finetuning-large-language-models)
+[finetuning-large-language-models](https://www.deeplearning.ai/short-courses/finetuning-large-language-models/)
+[finetuning-large-language-models](https://www.reddit.com/r/learnmachinelearning/comments/12whzmn/finetuning_large_language_models_an_introduction/)
+##### PEFT
+https://www.leewayhertz.com/parameter-efficient-fine-tuning/
+https://github.com/huggingface/peft
+https://vegavid.com/blog/parameter-efficient-fine-tuning-guide/
+https://www.hopsworks.ai/dictionary/parameter-efficient-fine-tuning-of-llms
+https://arxiv.org/abs/2305.16742
+https://aclanthology.org/2022.emnlp-main.514.pdf
+https://huggingface.co/blog/peft
+https://aman.ai/primers/ai/parameter-efficient-fine-tuning/
+https://www.nature.com/articles/s42256-023-00626-4
+https://markovate.com/blog/parameter-efficient-fine-tuning-peft-of-llms-a-practical-guide/
+https://youtube.com/watch?v=kRgWd_x2gkY
+https://towardsdatascience.com/parameter-efficient-fine-tuning-peft-for-llms-a-comprehensive-introduction-e52d03117f95
+https://lightning.ai/pages/community/article/understanding-llama-adapters/
+https://arxiv.org/abs/2304.01933
+https://news.ycombinator.com/item?id=35666201
+https://research.aimultiple.com/llm-fine-tuning/
+https://www.databricks.com/blog/efficient-fine-tuning-lora-guide-llms
+https://towardsdatascience.com/thinking-about-fine-tuning-an-llm-heres-3-considerations-before-you-get-started-c1f483f293
+ https://towardsdatascience.com/qa-lora-fine-tune-a-quantized-large-language-model-on-your-gpu-c7291866706c
+https://dsmonk.medium.com/training-and-deploying-of-quantized-llms-with-lora-and-gptq-part-2-2-ec7b54659c9e
+https://huggingface.co/docs/diffusers/main/en/training/lora
+https://bdtechtalks.com/2023/05/22/what-is-lora/
+https://www.ml6.eu/blogpost/low-rank-adaptation-a-technical-deep-dive
+https://openreview.net/forum?id=nZeVKeeFYf9
+https://openreview.net/pdf?id=nZeVKeeFYf9
+https://youtube.com/watch?v=XTZlc9hFZPY
+https://arxiv.org/abs/2309.12307
+https://huggingface.co/papers/2309.12307
+https://github.com/dvlab-research/LongLoRA
+https://www.reddit.com/r/LocalLLaMA/comments/16p1k2e/longlora_efficient_longcontext_finetuning/
+https://ai.plainenglish.io/longlora-how-to-extend-llms-context-sizes-through-fine-tuning-9f27894d1c06
+https://youtube.com/watch?v=cftIv4DKu1E
+https://arxiv.org/pdf/2305.14314.pdf
+https://arxiv.org/abs/2305.14314
+https://youtube.com/watch?v=LR3BmWCg7Y0
+https://youtube.com/watch?v=fQirE9N5q_Y
+https://towardsdatascience.com/qa-lora-fine-tune-a-quantized-large-language-model-on-your-gpu-c7291866706c
+https://www.linkedin.com/pulse/qlora-enabling-efficient-finetuning-quantized-language-adefami

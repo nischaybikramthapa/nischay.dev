@@ -6,8 +6,7 @@ import {
   UsersIcon,
   CodeBracketIcon,
 } from '@heroicons/react/24/outline'
-import React, { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import React from 'react'
 import FeatureCard from './FeatureCard'
 
 const features = [
