@@ -108,12 +108,31 @@ export const getTechIcon = (tech) => {
   return techStackMap[tech] || null
 }
 
-export const TechStack = ({ feature }) => (
-  <div className="flex items-center">
-    {feature.techStack.map((item, index) => (
+interface Feature {
+  techStack: string[]
+}
+
+export const TechStack = ({ feature }: { feature: Feature }) => {
+  const iconsPerRow = 7
+
+  const renderIcons = () => {
+    const iconElements = feature.techStack.map((item, index) => (
       <div key={index} className="mr-4">
         {getTechIcon(item)}
       </div>
-    ))}
-  </div>
-)
+    ))
+
+    const rows: JSX.Element[] = [];
+    for (let i = 0; i < iconElements.length; i += iconsPerRow) {
+      rows.push(
+        <div key={i} className="flex items-center mb-4">
+          {iconElements.slice(i, i + iconsPerRow)}
+        </div>
+      )
+    }
+
+    return rows
+  };
+
+  return <div>{renderIcons()}</div>
+}
