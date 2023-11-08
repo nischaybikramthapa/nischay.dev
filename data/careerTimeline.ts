@@ -1,33 +1,41 @@
 const careersData = [
     {
-      title: 'The Data Foundry',
+      title: 'Lead Data Consultant, The Data Foundry',
       time: 'November 2021 - Present',
-      description: `Delivered enterprise data lake solution,
-        player performance reporting tool for Golf Australia, improving their analytical capabilities by 80%. 
-    Designed an ingestion pattern to fetch data from various social media into the data lake to power marketing analytics for RMIT University. 
-    Developed a modular MLOps framework to support real-time inference and batch workloads, monitor concept and data drifts, 
-    cloud watch alarms to re-train ML pipelines and feature store using Sagemaker, CodePipeline, API Gateway, Lambda and CDK.`,
+      description: `Driving strategy and execution for automating data pipelines and
+      machine learning models at scale by translating business use cases
+      into innovative solutions for customers.
+      `,
     },
     {
-      title: 'PHMT',
-      time: 'April 2021 - November 2021',
-      description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-      to the desired date and press "Go". No more worrying about lost keys or
-      forgotten headphones with this simple yet affordable solution.`,
+      title: 'Data Scientist, PHMT',
+      time: 'July 2021 - October 2021',
+      description: `Developed an active learning framework to efficiently label data for machine failure detection models used in safety and mission critical systems.`,
     },
     {
-        title: 'PHMT',
-        time: 'April 2021 - November 2021',
-        description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-        to the desired date and press "Go". No more worrying about lost keys or
-        forgotten headphones with this simple yet affordable solution.`,
+      title: 'Digital Innovator, RMIT CIC and AWS',
+      time: 'March 2021 - June 2021',
+      description: `Developed a minimal loveable product using Amazon Alexa for the Museum of London to communicate forecasted electric consumptions and potential faults in HVAC systems.`,
+    },
+    {
+      title: 'Owner, Technenzy Inc',
+      time: 'April 2020 - March 2021',
+      description: `Owned an E-commerce business during the peak of Covid-19. Analysed marketing, sales, inventory and customer service data, resulting in maintaining a 99.5% satisfaction rate, achieving a 7% conversion rate, and reduced outstanding stock to 10%.`,
+    },
+    {
+        title: 'Master of Data Science, RMIT University',
+        time: 'March 2020 - November 2021',
+        description: `Graduated with a CGPA of 3.8 out of 4. Published a paper on ACSW '22: Proceedings of the 2022 Australasian Computer Science Week, titled "Hospital Readmission Prediction Using Clinical Admission Notes".`,
       },
       {
-        title: 'PHMT',
-        time: 'April 2021 - November 2021',
-        description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-        to the desired date and press "Go". No more worrying about lost keys or
-        forgotten headphones with this simple yet affordable solution.`,
+        title: 'Data Analyst, Worldlink Communications Ltd.',
+        time: 'February 2017 - February 2020',
+        description: `Developed and maintained multiple dashboards in PowerBI that allowed reduction in response time for customer tickets, improving retention by 7% and satisfaction score by 19%.`,
+      },
+      {
+        title: 'Bachelor of Information Management, Tribhuvan University',
+        time: 'October 2014 - November 2018',
+        description: `Graduated with a CGPA of 3.2 out of 4. Developed passsion for data and ML and have never stopped learning since then 🙌.`,
       },
   ]
   

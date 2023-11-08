@@ -2309,6 +2309,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@icons-pack/react-simple-icons@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "@icons-pack/react-simple-icons@npm:9.1.0"
+  peerDependencies:
+    react: ^16.13 || ^17 || ^18
+  checksum: 68b87be30e6790578b51921b93be837dee59bf695ec20eabc2a9069e885ba416bd644b1fe86217754925805b7298a3e1a4dc9186cab579cc7e7e9cce63994783
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -11379,6 +11388,7 @@ __metadata:
   dependencies:
     "@headlessui/react": ^1.7.17
     "@heroicons/react": ^2.0.18
+    "@icons-pack/react-simple-icons": ^9.1.0
     "@next/bundle-analyzer": 13.5.3
     "@svgr/webpack": ^8.0.1
     "@tailwindcss/forms": ^0.5.4

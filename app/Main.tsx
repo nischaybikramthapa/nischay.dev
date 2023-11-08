@@ -7,7 +7,7 @@ import { Featured } from '@/components/Featured'
 import Testimonials from '@/components/Testimonials'
 import ImageGrid from '@/components/ImageGrid'
 import Stats from '@/components/Stats'
-import Image from 'next/image' 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 const MAX_DISPLAY = 5
 
@@ -51,7 +51,15 @@ export default function Home({ posts }) {
           <motion.div
             whileHover={{ scale: [null, 1.5, 1.4] }}
             transition={{ ease: 'easeInOut', duration: 0.3, stiffness: 100, damping: 1 }}
-            className="hidden lg:mt-0 lg:col-span-5 lg:flex">
+            className="lg:hidden mb-8"
+          >
+            <Image src="/static/images/hero.png" alt="mockup" width={1200} height={1200} />
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: [null, 1.5, 1.4] }}
+            transition={{ ease: 'easeInOut', duration: 0.3, stiffness: 100, damping: 1 }}
+            className="hidden lg:mt-0 lg:col-span-5 lg:flex"
+          >
             <Image src="/static/images/hero.png" alt="mockup" width={1200} height={1200} />
           </motion.div>
         </div>
@@ -90,8 +98,8 @@ export default function Home({ posts }) {
                         <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                       </dd>
                       <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                    {Math.ceil(post.readingTime.minutes)} mins read
-                  </dd>
+                        {Math.ceil(post.readingTime.minutes)} mins read
+                      </dd>
                     </dl>
                     <div className="space-y-5 xl:col-span-3">
                       <div className="space-y-6">
