@@ -7,15 +7,15 @@ import Link from './Link'
 const Card = ({ title, description, imgSrc, href }) => {
   const [isMounted, setIsMounted] = useState(false)
 
-    useEffect(() => {
-      setIsMounted(true)
-    }, [])
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
-    if (!isMounted) {
-      return null
-    }
-return (
-  <a href={href} className="max-w-lg mb-4">
+  if (!isMounted) {
+    return null
+  }
+  return (
+    <a href={href} className="max-w-lg mb-4">
       <div className="flex flex-col h-full overflow-hidden rounded-xl border-2 p-[6px] hover:dark:border-white/90 hover:-translate-y-1 hover:scale-110 duration-300 ...">
         {imgSrc && (
           <div className="flex-shrink-0 object-none">
@@ -41,6 +41,7 @@ return (
         </div>
       </div>
     </a>
-)}
+  )
+}
 
 export default Card

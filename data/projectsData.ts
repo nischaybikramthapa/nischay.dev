@@ -1,7 +1,7 @@
 const projectsData = [
   {
     title: 'RMIT AWS Cloud Supercomputing Hub.',
-    description: `Implemented an AWS-based HPC and service workbench platform to help RMIT University researchers visualize molecular structure 100 times faster, simulate photonic chips 10 times faster, reduce wait times, and gain better visibility into costs.`,
+    description: `An AWS-based HPC and service workbench platform to help RMIT University researchers visualize molecular structure 100 times faster, simulate photonic chips 10 times faster, reduce wait times, and gain better visibility into costs.`,
     imgSrc: '/static/images/rmit-race.png',
     href: 'https://www.rmit.edu.au/partner/hubs/race',
   },
